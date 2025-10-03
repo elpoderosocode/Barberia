@@ -1,0 +1,773 @@
+/* mobile-first barber booking UI */
+:root{
+  --bg: #f3f4f7;
+  --card: #fff;
+  --accent: #2d7cff;
+  --accent-2: #18423f;
+  --muted: #9aa0a6;
+  --danger: #e55;
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(17,24,39,0.08);
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:linear-gradient(180deg,var(--bg),#f7f8fb 60%);
+  color:#0f1721;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* HERO contenedor con imagen */
+.hero {
+  position: relative;
+  background: url("images/portada-barber.jpg") no-repeat center center/cover;
+  height: 220px;  /* ajusta según tu diseño */
+  border-radius: 0 0 20px 20px;
+  color: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}/* Oscurecer un poco para que resalten textos */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  border-radius: 0 0 20px 20px;
+}
+/* Contenido encima de overlay */
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Dirección arriba */
+.hero-address {
+  font-size: 12px;
+  color: #ddd;
+  margin-bottom: 6px;
+}
+
+/* Nombre estudio */
+.hero-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+/* Categoría */
+.hero-category {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 92px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Acciones (alineadas en columna a la derecha) */
+.hero-actions {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-actions .icon {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 18px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Rating en esquina inferior izquierda */
+.hero-rating {
+  position: absolute;
+  bottom: -32px;
+  left: 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffb400;
+}
+
+.hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back{
+  background:transparent;border:0;color:#fff;font-size:18px;padding:6px 8px;border-radius:8px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%; /* logo circular */
+  border: 2px solid #ddd;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
+}
+
+.brand-address {
+  font-size: 13px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* Botones a la derecha */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions .icon {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+ .hero-actions .icon {
+  text-decoration: none;
+  color: inherit; /* opcional: hace que use el color definido o heredado */
+}
+
+/* Info (categoría + rating) */
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0 5px;
+}
+
+.category {
+  font-size: 14px;
+  color: #444;
+}
+
+.rating {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ff9800;
+}
+
+/* Container */
+.container{padding:18px;max-width:900px;margin:0 auto}
+
+/* Tabs */
+.tabs{display:flex;gap:8px;margin-top:12px}
+.tab{flex:1;background:#fff;border-radius:12px;padding:12px 10px;border:0;font-weight:700}
+.tab.active{background:var(--card);box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+
+/* filters */
+.filters{margin-top:12px}
+.pill-list{display:flex;gap:8px;margin-bottom:12px}
+.pill{padding:10px 14px;border-radius:14px;border:1px solid rgba(0,0,0,0.06);background:transparent}
+.pill.active{border:2px solid var(--accent);color:var(--accent);font-weight:600}
+
+.search input{
+  width:100%;padding:14px;border-radius:12px;border:0;box-shadow:var(--shadow);background:#eef0f4;color:#333
+}
+
+/* services list */
+.services-section{margin-top:16px}
+.services-list{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  margin-bottom:10px;
+}
+
+/* service card */
+.card{
+  background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);position:relative;border:1px solid rgba(2,6,23,0.04);
+}
+.card .meta{display:flex;justify-content:space-between;align-items:center}
+.badge{display:inline-block;padding:6px 9px;border-radius:999px;border:1px solid rgba(0,0,0,0.06);font-size:12px}
+.title{font-weight:800;font-size:20px;margin-top:8px}
+.desc{color:var(--muted);margin-top:8px;line-height:1.35}
+.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.price{color:var(--accent);font-weight:700}
+.add-btn{background:linear-gradient(180deg,var(--accent),#1b61f7);color:#fff;padding:8px 12px;border-radius:10px;border:0;box-shadow:0 6px 12px rgba(45,124,255,0.18)}
+
+/* pager */
+.pager{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:6px}
+.pager-btn{padding:8px 12px;border-radius:8px;border:0;background:#fff;box-shadow:var(--shadow)}
+#page-indicator{font-weight:600;color:#333}
+
+/* floating cart button */
+
+/* .cart-fab #cart-count{background:#fff;color:var(--accent);border-radius:999px;padding:4px 8px;font-weight:700} */
+
+/* drawer (cart/booking) */
+.drawer{
+  position:fixed;left:0;right:0;bottom:0;transform:translateY(100%);transition:transform .28s ease;z-index:50;
+  background:var(--card);border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:0 -12px 40px rgba(8,15,30,0.12);max-height:92vh;overflow:auto;padding:12px 14px;
+}
+.drawer.open{transform:translateY(0)}
+.drawer-header{display:flex;justify-content:space-between;align-items:center;padding:12px 6px}
+.drawer-body{padding:8px}
+.drawer-footer{padding:12px;display:flex;justify-content:center}
+.btn{padding:12px 18px;border-radius:12px;border:0;font-weight:700}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.disabled{opacity:.5;pointer-events:none}
+
+/* booking card inside drawer */
+.booking-card{background:#f7fafc;border-radius:12px;padding:12px;margin-bottom:12px;border:1px solid rgba(0,0,0,0.03)}
+.collaborator-select{display:flex;gap:10px;align-items:center;margin-top:8px}
+.collaborator-select img{width:40px;height:40px;border-radius:999px;object-fit:cover}
+
+/* date scroller */
+.dates-row{display:flex;gap:8px;margin-top:12px;align-items:center}
+.date-btn{padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);background:#fff;min-width:74px;text-align:center}
+.date-btn.active{background:linear-gradient(180deg,#2d7cff,#1b61f7);color:#fff;border:0}
+
+/* hours layout */
+.hours-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.slot{padding:8px 10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:#fff;min-width:84px;text-align:center}
+.slot.selected{background:#e8f0ff;border-color:var(--accent);font-weight:700}
+
+/* toast */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:88px;background:#111;color:#fff;padding:10px 14px;border-radius:999px;opacity:0;transition:opacity .2s;z-index:99}
+
+/* responsive: at >= 700 show two-column list */
+@media(min-width:700px){
+  .services-list{grid-template-columns:1fr 1fr}
+  .hero{border-radius:0}
+  .container{padding:24px}
+}
+
+
+
+/* === Drawer (carrito) === */
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.drawer-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.drawer-header .close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.drawer-footer {
+  padding: 16px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.drawer-footer .btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.drawer-footer .btn.primary {
+  background: #111;
+  color: #fff;
+  border: none;
+}
+.drawer-footer .btn.primary.disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* === Cart items === */
+
+/* Carrito flotante */
+#cart-container {
+  position: fixed;
+  top: 20px;          /* margen superior cuando se pega */
+  max-height: 90vh;   /* no exceder altura de pantalla */
+  overflow-y: auto;   /* scroll interno si es muy largo */
+  background: #fff;   /* fondo blanco limpio */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 16px;
+  z-index: 100;
+}
+
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8f8f8;
+}
+
+.cart-info {
+  max-width: 55%;
+}
+
+.cart-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cart-sub {
+  font-size: 13px;
+  color: #666;
+}
+
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.qty {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #d00;
+  cursor: pointer;
+}
+
+.cart-total {
+  margin-top: 12px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: right;
+  border-top: 1px solid #ddd;
+}
+
+/* === Floating Cart Button === */
+.cart-fab {
+  position: fixed !important;
+  top: 333px !important;
+  right: 18px !important;
+  bottom: auto !important;
+  left: auto !important;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+
+}
+
+.cart-fab span {
+  margin-left: 4px;
+  font-size: 14px;
+  background: #e53935;
+  border-radius: 10px;
+  padding: 2px 6px;
+  font-weight: 600;
+}
+
+/* === Booking Step Estilos === */
+.booking-step h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+/* Carrusel de días */
+.dates-carousel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.dates-row {
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.date-btn {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  min-width: 80px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.date-btn:hover {
+  background: #f3f4f6;
+}
+
+.date-btn.active {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+
+/* Flechas de navegación */
+.date-nav {
+  background: #f3f4f6;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-nav:hover {
+  background: #e5e7eb;
+}
+
+/* Select colaborador */
+.collaborator-select {
+  margin-bottom: 14px;
+}
+
+.collaborator-select label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.styled-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  appearance: none;
+  background: url("data:image/svg+xml;utf8,<svg fill='%23666' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>")
+    no-repeat right 12px center/16px auto;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.styled-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+}
+
+/* Horas */
+.hours-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.slot {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.slot:hover {
+  background: #f3f4f6;
+}
+
+.slot.selected {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+
+.booking-block {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.booking-block h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+
+/* Estilo del círculo del carrito */
+#cart-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: black;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Animación de sobresalto */
+#cart-count.bump {
+  animation: bump 0.3s ease;
+}
+
+@keyframes bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/*Boton de volver atras en el carrito de compras*/
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--primary, #007bff);
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* === Client Info Step Estilos === */
+.client-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.client-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.confirm-btn {
+  margin-top: 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+.confirm-btn:hover {
+  background: #0056b3;
+}
+
+
+
+
+/* === Barber Cards (más pequeñas y ordenadas) === */
+.barber-list {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  overflow-x: auto;  /* scroll horizontal si son muchos */
+  padding-bottom: 8px;
+}
+
+.barber-card {
+  flex: 0 0 90px;             /* ancho fijo más pequeño */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.barber-card img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 6px;
+}
+
+.barber-card .name {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.barber-card.selected {
+  border-color: var(--accent);
+  background: #eaf1ff;
+  transform: scale(1.05);
+}
+
+/*Loader Beginnig*/
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* Loader overlay */
+
+.dates-row-wrapper {
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0;
+  
+}
+
+.date-nav {
+  background: var(--primary);
+  color: rgb(20, 109, 243);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dates-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+/*Footer Made By Devnex*/
+.footer {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  padding: 12px;
+  margin-top: 20px;  
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer .purple-web {
+  display: inline-block;
+  margin-left: 4px;
+}
+

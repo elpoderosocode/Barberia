@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reservas Barbería - Demo</title>
+
+  <!-- Fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-overlay">
+    <!-- Dirección -->
+    <div class="hero-address">
+      <p>📍Calle 50 #26-15 parque a la Vida</p>
+      <p>Barrancabermeja, Santander</p>
+    </div>
+
+    <!-- Nombre del estudio -->
+    <h1 class="hero-title">Visionary barber studio</h1>
+
+    <!-- Botón categoría -->
+    <div class="hero-category">Barbería</div>
+
+    <!-- Íconos -->
+    <div class="hero-actions">
+      <!-- Instagram -->
+  <a href="https://www.instagram.com/visionarybs.co?igsh=MTk2aWU0ZHdqZ2FtbA==" target="_blank" class="icon">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <!-- Teléfono -->
+  <a href="tel:+573229743802"  class="icon">
+    <i class="fas fa-phone"></i>
+  </a>
+
+  <!-- Traductor (Google Translate / Idioma) -->
+  <a href="https://www.facebook.com/share/1LvwwxHWDd/?mibextid=wwXIfr"  target="_blank" class="icon">
+    <i class="fab fa-facebook"></i>
+  </a>
+
+  <!-- TikTok -->
+  <a href="https://www.tiktok.com/@visionary_lvv?_t=ZS-90Fj3V35YL1&_r=1" target="_blank" class="icon">
+    <i class="fab fa-tiktok"></i>
+  </a>
+    </div>
+
+    <!-- Rating -->
+    <div class="hero-rating">★ 5.0</div>
+  </div>
+</header>
+
+
+  <main class="container">
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="all">Servicios</button>
+      <button class="tab" data-tab="details">Detalles</button>
+      <button class="tab" data-tab="reviews">Reseñas</button>
+    </nav>
+
+    <!-- filter row -->
+    <section class="filters">
+      <div class="pill-list">
+        <button class="pill active" data-cat="all">Todo</button>
+        <button class="pill" data-cat="servicio_clasico">servicio clásico</button>
+        <button class="pill" data-cat="premium">premium</button>
+      </div>
+
+      <div class="search">
+        <input id="search" placeholder="Search service">
+      </div>
+    </section>
+
+    <!-- Services carousel / grid -->
+    <section class="services-section">
+      <div id="services-list" class="services-list"></div>
+
+      <div class="pager">
+        <button id="prev-page" class="pager-btn">&larr; </button>
+        <div id="page-indicator">1 / 1</div>
+        <button id="next-page" class="pager-btn"> &rarr;</button>
+      </div>
+    </section>
+
+    <!-- Floating cart button -->
+    <button id="cart-toggle" class="cart-fab">
+      🛒 <span id="cart-count">0</span>
+    </button>
+
+    <!-- Drawer: cart / booking -->
+    <aside id="drawer" class="drawer">
+      <div class="drawer-header">
+        <h2>Agenda</h2>
+        <button id="drawer-close" class="close">✕</button>
+      </div>
+
+      <div id="cart-contents" class="drawer-body">
+        <!-- dynamic content -->
+      </div>
+
+      <div class="drawer-footer">
+        <button id="next-step" class="btn primary disabled">Siguiente</button>
+      </div>
+    </aside>
+
+    <!-- small toast / notice -->
+    <div id="toast" class="toast"></div>
+  </main>
+
+
+  <div id="loader" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); color:#fff; justify-content:center; align-items:center; flex-direction:column; z-index:9999;">
+  <div class="spinner"></div>
+  <p>Cargando...</p>
+</div>
+
+
+<footer class="footer">
+  <p>
+    Made By <strong><a href="https://www.instagram.com/devnex.bca?igsh=MXIwMDU2bm8wd2NudQ%3D%3D&utm_source=qr" style="color: blueviolet;">Devnex</a></strong>
+    <span class="purple-web">🕸️💜</span>
+  </p>
+</footer>
+
+  <script src="app.js"></script>
+  <!-- Incluye la librería (solo una vez en tu HTML) -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
