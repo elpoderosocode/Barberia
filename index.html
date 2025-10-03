@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reservas Barbería - Demo</title>
+
+  <!-- Fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-overlay">
+    <!-- Dirección -->
+    <div class="hero-address">
+      <p>📍Calle 50 #26-15 parque a la Vida</p>
+      <p>Barrancabermeja, Santander</p>
+    </div>
+
+    <!-- Nombre del estudio -->
+    <h1 class="hero-title">Legendary barber studio</h1>
+
+    <!-- Botón categoría -->
+    <div class="hero-category">Barbería</div>
+
+    <!-- Íconos -->
+    <div class="hero-actions">
+      <button class="icon" style="color: red;">♡</button>
+      <button class="icon">☎</button>
+      <button class="icon">🌐</button>
+    </div>
+
+    <!-- Rating -->
+    <div class="hero-rating">★ 5.0</div>
+  </div>
+</header>
+
+
+  <main class="container">
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="all">All services</button>
+      <button class="tab" data-tab="details">Details</button>
+      <button class="tab" data-tab="reviews">Reviews</button>
+    </nav>
+
+    <!-- filter row -->
+    <section class="filters">
+      <div class="pill-list">
+        <button class="pill active" data-cat="all">All</button>
+        <button class="pill" data-cat="servicio_clasico">servicio clásico</button>
+        <button class="pill" data-cat="premium">premium</button>
+      </div>
+
+      <div class="search">
+        <input id="search" placeholder="Search service">
+      </div>
+    </section>
+
+    <!-- Services carousel / grid -->
+    <section class="services-section">
+      <div id="services-list" class="services-list"></div>
+
+      <div class="pager">
+        <button id="prev-page" class="pager-btn">&larr; </button>
+        <div id="page-indicator">1 / 1</div>
+        <button id="next-page" class="pager-btn"> &rarr;</button>
+      </div>
+    </section>
+
+    <!-- Floating cart button -->
+    <button id="cart-toggle" class="cart-fab">
+      🛒 <span id="cart-count">0</span>
+    </button>
+
+    <!-- Drawer: cart / booking -->
+    <aside id="drawer" class="drawer">
+      <div class="drawer-header">
+        <h2>Book</h2>
+        <button id="drawer-close" class="close">✕</button>
+      </div>
+
+      <div id="cart-contents" class="drawer-body">
+        <!-- dynamic content -->
+      </div>
+
+      <div class="drawer-footer">
+        <button id="next-step" class="btn primary disabled">NEXT</button>
+      </div>
+    </aside>
+
+    <!-- small toast / notice -->
+    <div id="toast" class="toast"></div>
+  </main>
+
+
+  <div id="loader" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); color:#fff; justify-content:center; align-items:center; flex-direction:column; z-index:9999;">
+  <div class="spinner"></div>
+  <p>Cargando...</p>
+</div>
+
+  <script src="app.js"></script>
+  <!-- Incluye la librería (solo una vez en tu HTML) -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>
